@@ -1,0 +1,12 @@
+app:
+  datasource:
+    jdbc-url: jdbc:postgresql://localhost:5432/portfolio
+    username: postgres
+    password: password
+    pool-size: 30
+spring:
+  thymeleaf:
+    enabled: true
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html

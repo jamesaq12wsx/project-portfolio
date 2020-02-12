@@ -50,13 +50,7 @@ public class IndexController {
             Resume usernameResume = resumeService.getResumeByUsername(username);
             model.addAttribute("resume", usernameResume);
 
-            CompletableFuture future = CompletableFuture.runAsync(() -> {
-                try{
-                    resumeLinkRecordService.addRecord("");
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-            });
+            CompletableFuture future = resumeLinkRecordService.addRecord(company);
 
             return "index";
         }catch (ResumeNotFoundException ex){

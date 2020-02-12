@@ -1,12 +1,27 @@
 app:
   datasource:
     jdbc-url: jdbc:postgresql://localhost:5432/portfolio
-    username: postgres
-    password: password
-    pool-size: 30
+    username: portfolio
+    password: portfolio
+    hikari:
+      connectionTimeout: 2000
+      maximumPoolSize: 5
 spring:
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
   thymeleaf:
     enabled: true
     cache: false
     prefix: classpath:/templates/
     suffix: .html
+  flyway:
+    locations: classpath:/db/migration

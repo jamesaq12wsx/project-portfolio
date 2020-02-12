@@ -1,4 +1,4 @@
-package com.jamesaq12wsx.portfolio;
+package com.jamesaq12wsx.portfolio.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

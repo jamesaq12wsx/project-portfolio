@@ -21,6 +21,7 @@ public class Education implements Serializable {
     @NotNull
     private String institute;
 
+    @Column(name = "link", columnDefinition = "varchar(255) default = ''")
     private String link;
 
     @NotNull

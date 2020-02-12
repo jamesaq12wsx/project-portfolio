@@ -33,8 +33,12 @@ public class Experience implements Serializable {
     @NotNull
     private String company;
 
+    @Column(name = "company_url", columnDefinition="varchar(255) default ''")
+    private String companyUrl;
+
     @NotNull
     private String role;
 
+    @Column(name = "comment", columnDefinition = "varchar(3000) default ''")
     private String comment;
 }

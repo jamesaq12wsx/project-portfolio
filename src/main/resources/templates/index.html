@@ -3,14 +3,12 @@
 
 <head>
 
-    <title>Getting Started: Serving Web Content</title>
+    <title>Portfolio</title>
     <link href="/css/resume.css" rel="stylesheet">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Resume - Start Bootstrap Theme</title>
+    <meta name="author" content="jamesaq12wsx">
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" />
@@ -76,7 +74,7 @@
             </h1>
             <div class="subheading mb-5" th:inline="text">
                 <span th:text="${resume.getAddress().getAddress() + '·' + resume.getAddress().getCity()+ '·' + resume.getAddress().getState() + '·' + resume.getAddress().getZipCode()}" /><br>
-                <a th:href="'tel:' + ${resume.getPhone()}" th:text="${resume.getPhone()}" /><br>
+                <a th:href="'tel:' + ${resume.getPhone()}" th:text="${'(' + resume.getPhone().substring(0,3) + ') '+ resume.getPhone().substring(3,6) +'-'+ resume.getPhone().substring(6)}" /><br>
                 <a th:href="'mailto:'+${resume.getEmail()}" th:text="${resume.getEmail()}" />
                 <div th:if="${resume.getResumeUrl() != null && !resume.getResumeUrl().isBlank()}" th:remove="tag">
                     <br><a th:text="${'Resume'}" th:href="${resume.getResumeUrl()}" download/>
@@ -124,7 +122,10 @@
 
             <div th:each="ex: ${resume.getExperiences()}" class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
                 <div class="resume-content">
-                    <h3 th:text="${ex.getCompany()}" class="mb-0"/>
+                    <h3 class="mb-0">
+                        <a th:if="${ex.getCompanyUrl() != null && !ex.getCompanyUrl().isBlank()}" th:href="${ex.getCompanyUrl()}" th:text="${ex.getCompany()}" />
+                        <p th:unless="${ex.getCompanyUrl() != null && !ex.getCompanyUrl().isBlank()}" th:text="${ex.getCompany()}" th:remove="tag" />
+                    </h3>
                     <div th:text="${ex.getRole()}" class="subheading mb-3"/>
                     <div th:each="c: ${ex.getComment().split('\n')}">
                         <p th:text="${c}"/>
@@ -147,7 +148,10 @@
 
             <div th:each="edu: ${resume.getEducations()}" class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
                 <div class="resume-content">
-                    <h3 th:text="${edu.getInstitute()}" class="mb-0">University of Colorado Boulder</h3>
+                    <h3 class="mb-0">
+                        <p th:if="${edu.getLink() == null || edu.getLink().isBlank()}" th:text="${edu.getInstitute()}"/>
+                        <a th:unless="${edu.getLink() == null || edu.getLink().isBlank()}" th:href="${edu.getLink()}" th:text="${edu.getInstitute()}"/>
+                    </h3>
                     <div th:text="${edu.getProgram() + ' - ' + edu.getMajor()}" class="subheading mb-3" />
                     <div th:text="${edu.getComment()}" />
                 </div>

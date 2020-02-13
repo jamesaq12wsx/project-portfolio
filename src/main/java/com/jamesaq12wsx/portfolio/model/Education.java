@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -21,7 +22,7 @@ public class Education implements Serializable {
     @NotNull
     private String institute;
 
-    @Column(name = "link", columnDefinition = "varchar(255) default = ''")
+    @Column(name = "link")
     private String link;
 
     @NotNull
@@ -38,6 +39,7 @@ public class Education implements Serializable {
     @Column(name = "end_date")
     private Date endDate;
 
+    @Size(max = 3000)
     private String comment;
 
 }

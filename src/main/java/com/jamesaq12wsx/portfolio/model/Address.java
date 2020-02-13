@@ -21,23 +21,20 @@ import java.io.Serializable;
 public class Address implements Serializable {
 
     @NotNull
-    @Size(max = 100)
+    @Size(max = 1000)
     private String address;
 
     @NotNull
-    @Size(max = 100)
     private String city;
 
     @NotNull
-    @Size(max = 100)
     private String state;
 
     @NotNull
-    @Size(max = 100)
+    @Size(max = 1000)
     private String country;
 
     @NotNull
-    @Size(max = 100)
     private String zipCode;
 
     public Address() { }

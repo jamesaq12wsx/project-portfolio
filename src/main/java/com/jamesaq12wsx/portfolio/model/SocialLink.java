@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Embeddable
@@ -20,6 +21,7 @@ public class SocialLink implements Serializable {
     private String type;
 
     @NotNull
+    @Size(max = 1000)
     private String url;
 
 }

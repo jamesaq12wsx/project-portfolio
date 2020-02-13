@@ -7,7 +7,7 @@ import com.jamesaq12wsx.portfolio.model.ResumeLinkRecord;
 import com.jamesaq12wsx.portfolio.service.ResumeLinkRecordService;
 import com.jamesaq12wsx.portfolio.service.ResumeService;
 import lombok.Getter;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -64,7 +64,7 @@ public class IndexController {
         try{
             Resource resource = new ClassPathResource(String.format("%s.pdf", username));
             InputStream input = resource.getInputStream();
-            return input.readAllBytes();
+            return IOUtils.toByteArray(input);
 
         }catch (Exception e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "PDF resume not found", e);

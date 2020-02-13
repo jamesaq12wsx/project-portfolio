@@ -50,11 +50,13 @@ public class Resume extends AuditModel implements Serializable {
     @Column(name = "last_name")
     private String lastName;
 
+    @Size(max = 5000)
     private String statement;
 
     @NotNull(message = "Phone may not be blank")
     private String phone;
 
+    @Size(max = 1000)
     private String email;
 
     @Embedded
